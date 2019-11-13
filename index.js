@@ -98,7 +98,7 @@ mongoose
 //   }
 //   console.log("save successfully");
 // });
-Costumer.find({city: "Paris", cars: "Bentley"  }, (err, data) => {
+Costumer.find({city:"Skopje","cars.model" :"Seat Leon"} , (err, data) => {
     
     if (err) {
       console.log("could not read data");
