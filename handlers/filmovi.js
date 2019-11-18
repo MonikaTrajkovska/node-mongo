@@ -63,14 +63,65 @@ const save = (req, res) => {
       res.status(500).send(err);
     });
 };
+
+const remove = (req, res) => {
+  mFilmovi
+    .remove(req.params.id) //koe id ke bide vo url toa se brise so ova req.params.id
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+  //res.send("OK");
+};
 const replace = (req, res) => {
-  res.send("OK");
+  var data = req.body;
+  let er = 0;
+  if (data.ime == undefined || data.ime.length == 0) {
+    er++;
+  }
+  if (data.rezija == undefined || data.rezija.length == 0) {
+    er++;
+  }
+  if (data.godina == undefined || data.godina.length == 0) {
+    er++;
+  }
+  if (data.zanr == undefined || data.zanr.length == 0) {
+    er++;
+  }
+  if (data.akteri == undefined || data.akteri.length == 0) {
+    er++;
+  }
+  if (data.oscar == undefined) {
+    er++;
+  }
+  if (er == 0) {
+    mFilmovi
+      .replace(req.params.id, data)
+      .then(() => {
+        res.status(204).send();
+      })
+      .catch(err => {
+        res.status(500).send(err);
+      });
+    //res.send("OK");
+  } else {
+    res.status(400).send("Bad request");
+  }
 };
 const update = (req, res) => {
-  res.send("OK");
-};
-const remove = (req, res) => {
-  res.send("OK");
+  var data = req.body;
+
+  mFilmovi
+    .replace(req.params.id, data)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+  //res.send("OK");
 };
 module.exports = {
   getAll,

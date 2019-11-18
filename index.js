@@ -1,8 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser"); //ova i dozvoluva da procitame sto ima klientot isprateno
+const config = require("./config/index.js");
 const DBconn = require("./db/connection"); //povrzi ja so fajlot
 const filmovi = require("./handlers/filmovi");
-DBconn.init(); //i ovde se povikuva funkcijata
+
+var c = config.getConfig("db");
+// console.log(c);
+
+DBconn.init(c); //i ovde se povikuva funkcijata  //ova c go isprakame na db connection  init
 const api = express(); //pa pota se potkreva api
 
 api.use(bodyParser.json());

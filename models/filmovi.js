@@ -51,9 +51,31 @@ const save = data => {
     });
   });
 };
-
+const remove = id => {
+  return new Promise((success, fail) => {
+    Film.deleteOne({ _id: id }, err => {
+      //id na recordot sto sakame da go izbriseme i vtoriot e err go povikuvame ako ima
+      if (err) {
+        return fail(err);
+      }
+      return success();
+    });
+  });
+};
+const replace = (id, data) => {
+  return new Promise((success, fail) => {
+    Film.updateOne({ _id: id }, data, err => {
+      if (err) {
+        return fail(err);
+      }
+      return success();
+    });
+  });
+};
 module.exports = {
   getAll,
   getOne,
-  save
+  save,
+  remove,
+  replace
 };
