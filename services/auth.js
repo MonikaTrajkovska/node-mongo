@@ -13,7 +13,7 @@ api.post("/api/v1/login", auth.login);
 api.get("/api/v1/renew", auth.renew);
 api.post("/api/v1/send-reset-link", auth.resetLink);
 api.post("/api/v1/reset-password", auth.resetPassword);
-api.post("/api/v1/change-password", auth.changePassword8);
+api.post("/api/v1/change-password", auth.changePassword);
 
 api.listen(8081, err => {
   if (err) {

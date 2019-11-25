@@ -4,5 +4,8 @@
     "dbname": "videoteka",
     "username": "dev",
     "password": "DEV123!"
+  },
+  "jwt": {
+    "key": "kluch"
   }
 }
