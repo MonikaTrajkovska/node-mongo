@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Film = mongoose.model(
-    'film', 
+    'film',
     new mongoose.Schema({
         ime: String,
         godina: Date,
@@ -10,16 +10,16 @@ const Film = mongoose.model(
         oscar: Boolean,
         akteri: [String],
         user_id: String
-    }, 
-    {
-        collection: 'filmovi'
-    })
+    },
+        {
+            collection: 'filmovi'
+        })
 );
 
-const getAll = (userID) => {
+const getAll = (q, sort) => {
     return new Promise((success, fail) => {
-        Film.find({user_id: userID}, (err, data) => {
-            if(err){
+        Film.find(q, {}, { sort: sort }, (err, data) => {
+            if (err) {
                 return fail(err);
             }
             return success(data);
@@ -29,8 +29,8 @@ const getAll = (userID) => {
 
 const getOne = (id, userID) => {
     return new Promise((success, fail) => {
-        Film.find({_id: id, user_id: userID}, (err, data) => {
-            if(err){
+        Film.find({ _id: id, user_id: userID }, (err, data) => {
+            if (err) {
                 return fail(err);
             }
             return success(data[0]);
@@ -42,7 +42,7 @@ const save = (data) => {
     return new Promise((success, fail) => {
         var f = new Film(data);
         f.save(data, err => {  //data se podatocite sto doagaat od klientska strana
-            if(err){
+            if (err) {
                 return fail(err);
             }
             return success();
@@ -52,8 +52,8 @@ const save = (data) => {
 
 const remove = (id) => {
     return new Promise((success, fail) => {
-        Film.deleteOne({_id: id}, err => {  //id na recordot sto sakame da go izbriseme i vtoriot e err go povikuvame ako ima 
-            if(err){
+        Film.deleteOne({ _id: id }, err => {  //id na recordot sto sakame da go izbriseme i vtoriot e err go povikuvame ako ima 
+            if (err) {
                 return fail(err);
             }
             return success();
@@ -63,8 +63,8 @@ const remove = (id) => {
 
 const replace = (id, data) => {
     return new Promise((success, fail) => {
-        Film.updateOne({_id: id}, data, err => {
-            if(err){
+        Film.updateOne({ _id: id }, data, err => {
+            if (err) {
                 return fail(err);
             }
             return success();

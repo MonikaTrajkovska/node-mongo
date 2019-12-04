@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser"); //ova i dozvoluva da procitame sto ima klientot isprateno
-var jwt =require('express-jwt')
+var jwt = require('express-jwt')
 const config = require("../config/index.js");
 const DBconn = require("../db/connection"); //povrzi ja so fajlot
 const filmovi = require("../handlers/filmovi");
@@ -12,11 +12,11 @@ DBconn.init(c); //i ovde se povikuva funkcijata  //ova c go isprakame na db conn
 const api = express(); //pa pota se potkreva api
 
 api.use(bodyParser.json());
-api.use(
-  jwt(
-      {secret: config.getConfig('jwt').key}
-  )
-);
+// api.use(
+//   jwt(
+//       {secret: config.getConfig('jwt').key}
+//   )
+// );
 
 api.get("/api/v1/filmovi", filmovi.getAll); //v1 e version 1 a dokolku sakame druga verzija go pravime v2 itn
 api.get("/api/v1/filmovi/:id", filmovi.getOne);
