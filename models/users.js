@@ -33,6 +33,17 @@ const getUserPasswordByEmail = (email) => {
     });
 }
 
+const getUserPasswordByEmail = (email) => {
+  return new Promise((succes, fail) => {
+    User.find({ email: email }, { password: 1, email: 1, first_name: 1, last_name: 1 }, (err, data) => {//1 znaci true kaj password a 0 e false
+      if (err) {
+        return fail(err)
+      }
+      return succes(data[0]) //vrati mi go prviot element od taa niza 
+    })
+  })
+}
+
 module.exports = {
     createUser,
     getUserPasswordByEmail
