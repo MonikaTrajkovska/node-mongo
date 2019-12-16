@@ -1,8 +1,9 @@
 const randomstring = require('randomstring')
+const fs = require('fs')
 
 
 const UploadFile = (req, res) => {
- var file = req.files.file   //file nie poleto sto go isprakame
+ var file = req.files.file;   //file nie poleto sto go isprakame
  console.log(file)
  if (file.size > 10 * 1024 * 1024) {
   return res.status(500).send('File too big')
@@ -20,11 +21,23 @@ const UploadFile = (req, res) => {
   if (err) {
    return res.status(500).send('Internal Server Error')
   }
-  res.status(200).send('ok')
+  res.status(200).send({
+   filename: `${prefix}_${file.name}`
+  })
 
  })
 }
 
+const DownloadFile = (req, res) => {
+ let filepath = `./uploads/${req.params.filename}`
+ if (fs.existsSync(filepath)) {
+  res.sendFile(filepath)
+ } else {
+  res.status(404).send('Not found ')
+ }
+}
+
 module.exports = {
- UploadFile
+ UploadFile,
+ DownloadFile
 }
