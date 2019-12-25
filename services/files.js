@@ -8,22 +8,22 @@ var api = express();
 
 api.use(
     jwt(
-        {secret: config.getConfig('jwt').key}
+        { secret: config.getConfig('jwt').key }
     )
 );
 
 api.use(fileupload({
-    limits: {fileSize: 50 * 1024 * 1024},
+    limits: { fileSize: 50 * 1024 * 1024 },
 }));
 
 api.post('/api/v1/upload', files.UploadFile);
 api.get('/api/v1/upload/:filename', files.DownloadFile);
 
 api.listen(8002, err => {
-    if(err){
+    if (err) {
         console.log('Could not start server');
         console.log(err);
         return;
     }
-    console.log('Server successfully started on port 8001');
+    console.log('Server successfully started on port 8002');
 });

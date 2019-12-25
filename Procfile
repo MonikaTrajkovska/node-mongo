@@ -1,0 +1,1 @@
+web:node services/auth.js & node srevices/files.js & node services/filmovi.js & node services/proxy.js

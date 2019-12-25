@@ -18,9 +18,9 @@ api.use(bodyParser.json());
 //   )
 // );
 
-api.get("/api/v1/filmovi", filmovi.getAll); //v1 e version 1 a dokolku sakame druga verzija go pravime v2 itn
+api.get("/api/v1/filmovi/", filmovi.getAll); //v1 e version 1 a dokolku sakame druga verzija go pravime v2 itn
 api.get("/api/v1/filmovi/:id", filmovi.getOne);
-api.post("/api/v1/filmovi", filmovi.save);
+api.post("/api/v1/filmovi/", filmovi.save);
 api.put("/api/v1/filmovi/:id", filmovi.replace);
 api.patch("/api/v1/filmovi/:id", filmovi.update);
 api.delete("/api/v1/filmovi/:id", filmovi.remove);
