@@ -21,14 +21,15 @@ api.use('/public', express.static(pub));
 api.use(bodyParser.json());
 api.use(
     jwt(
-        { secret: config.getConfig('jwt').key }
+        {secret: config.getConfig('jwt').key}
     )
-        .unless(
-            { path: ['/api/v1/register', '/api/v1/login', '/public'] }
-        )
+    .unless(
+    {path: ['/api/v1/register', '/api/v1/login', '/public', /\/api\/v1\/confirm\/.*/]}
+    )
 );
 
 api.post('/api/v1/register', auth.register);
+api.get('/api/v1/confirm/:confirm_hash', auth.confirm);
 api.post('/api/v1/login', auth.login);
 api.get('/api/v1/renew', auth.renew);
 api.post('/api/v1/reset-link', auth.resetLink);
@@ -37,17 +38,17 @@ api.post('/api/v1/change-password', auth.changePassword);
 
 api.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
-        res.status(401).send({ message: 'Invalid token' });
+        res.status(401).send({message: 'Invalid token'});
     } else {
         next(err);
     }
 });
 
-api.listen(8081, err => {
-    if (err) {
+api.listen(8001, err => {
+    if(err){
         console.log('Could not start server');
         console.log(err);
         return;
     }
-    console.log('Server successfully started on port 8081');
+    console.log('Server successfully started on port 8001');
 });

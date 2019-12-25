@@ -1,5 +1,5 @@
 {
-  "name": "mongo",
+  "name": "node-mongo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MonikaTrajkovska/node-mongo.git"
+    "url": "git+https://github.com/pr0pellerhead/node-mongo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MonikaTrajkovska/node-mongo/issues"
+    "url": "https://github.com/pr0pellerhead/node-mongo/issues"
   },
-  "homepage": "https://github.com/MonikaTrajkovska/node-mongo#readme",
+  "homepage": "https://github.com/pr0pellerhead/node-mongo#readme",
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
@@ -26,8 +27,5 @@
     "mongoose": "^5.7.8",
     "node-input-validator": "^4.1.0",
     "randomstring": "^1.1.5"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.1"
   }
 }

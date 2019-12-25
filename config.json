@@ -5,6 +5,10 @@
     "username": "dev",
     "password": "DEV123!"
   },
+  "mailer": {
+    "server": "",
+    "api_key": ""
+},
   "jwt": {
     "key": "kluch"
   }
