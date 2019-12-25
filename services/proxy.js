@@ -22,7 +22,7 @@ api.all('/', reg, res => {
  res.status(404).send('Not found')
 })
 
-api.listen(proces.env.PORT, err => {
+api.listen(process.env.PORT, err => {
  if (err) {
   console.log('couldn start server')
   console.log('err')
