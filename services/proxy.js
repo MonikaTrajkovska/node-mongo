@@ -18,4 +18,15 @@ api.all('/api/v1/filmovi/*', (req, res) => {
 
 
 })
-api.listen(5000)
+api.all('/', reg, res => {
+ req.status(404).send('Not found')
+})
+
+api.listen(proces.env.PORT, err => {
+ if (err) {
+  console.log('couldn start server')
+  console.log('err')
+  return
+ }
+ console.log('server starter ')
+})
