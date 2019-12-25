@@ -19,7 +19,7 @@ api.all('/api/v1/filmovi/*', (req, res) => {
 
 })
 api.all('/', reg, res => {
- req.status(404).send('Not found')
+ res.status(404).send('Not found')
 })
 
 api.listen(proces.env.PORT, err => {
