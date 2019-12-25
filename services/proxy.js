@@ -18,3 +18,4 @@ api.all('/api/v1/filmovi/*', (req, res) => {
 
 
 })
+api.listen(5000)
